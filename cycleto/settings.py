@@ -14,7 +14,7 @@ NEWSPIDER_MODULE = "cycleto.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "cycleto (+http://www.yourdomain.com)"
+USER_AGENT = "cycleto (+https://github.com/ellieayla/cycleto-events-ical)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
