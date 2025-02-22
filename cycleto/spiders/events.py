@@ -23,7 +23,7 @@ def remove_empty_nodes(selector_list):
 
 
 class EventsSpider(scrapy.Spider):
-    name = 'councilmeetings'
+    name = 'events'
     allowed_domains = ['www.cycleto.ca']
     start_urls = [
         'https://www.cycleto.ca/events'

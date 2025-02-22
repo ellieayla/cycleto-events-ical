@@ -4,3 +4,4 @@ pytz>=2025.1
 cryptography>=36.0.1
 icalendar>=6.1.1
 datauri==1.0.0
+scrapy-playwright==0.0.42

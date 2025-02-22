@@ -1,3 +1,3 @@
 #!/bin/sh
 
-scrapy crawl councilmeetings  # -o dates.ical
+python -m scrapy crawl events # -o dates.ical

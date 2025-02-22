@@ -39,4 +39,4 @@ class Event(Item):
     description = Field()
 
     def __repr__(self):
-        return f"{self.start_datetime}: {self.url}: {self.summary}"
+        return f"{self['start_datetime']}: {self['url']}: {self['summary']}"
