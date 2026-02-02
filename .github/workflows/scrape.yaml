@@ -27,7 +27,7 @@ jobs:
 
     - name: install chromium
       run: |
-        playwright install chromium
+        uv run playwright install chromium
 
     - name: debug curl
       run: |
