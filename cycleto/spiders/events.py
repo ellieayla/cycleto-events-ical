@@ -1,25 +1,27 @@
 import scrapy
 
-from typing import Generator
+from typing import Generator, Iterable, Iterator
 
+import scrapy.http
 from scrapy.item import Item
 from scrapy.loader import ItemLoader
+from scrapy.selector import SelectorList, Selector
+from parsel import Selector as ParselSelector
 
 from ..items import Event
 import icalendar
-import datauri
+import datauri  # pragma: notype
 import logging
 from w3lib.html import remove_tags
 
 
-def remove_node(nodes_to_remove):
+def remove_node(nodes_to_remove: list[Selector | ParselSelector] | SelectorList) -> None:
     for node_to_remove in nodes_to_remove:
         node_to_remove.root.getparent().remove(node_to_remove.root)
 
-def remove_empty_nodes(selector_list):
+def remove_empty_nodes(selector_list: SelectorList) -> None:
     targets = [_ for _ in selector_list if not remove_tags(_.extract()).strip()]
     remove_node([_ for _ in selector_list if not remove_tags(_.extract()).strip()])
-
 
 
 class EventsSpider(scrapy.Spider):
@@ -29,7 +31,7 @@ class EventsSpider(scrapy.Spider):
         'https://www.cycleto.ca/events'
     ]
 
-    def parse(self, response) -> Generator[Event, None, None]:
+    def parse(self, response: scrapy.http.Response) -> Iterator[scrapy.Request]:
         # https://docs.scrapy.org/en/latest/topics/loaders.html#nested-loaders ?
 
         for e in response.css(".calendar-list li.calendar-day-events-event a::attr(href)").getall():
@@ -39,11 +41,11 @@ class EventsSpider(scrapy.Spider):
                 meta={"playwright": True},
             )
 
-    def parse_meeting_details(self, response):
+    def parse_meeting_details(self, response: scrapy.http.Response) -> Iterable[Event]:
 
         ics_blob = response.xpath('//a[contains(@download, "event.ics")]/@href').get()
-        a = datauri.parse(ics_blob)
-        base_calendar = icalendar.Calendar.from_ical(a.data)
+        a: datauri.datauri.ParsedDataURI = datauri.parse(ics_blob)
+        base_calendar: icalendar.Component = icalendar.Calendar.from_ical(a.data)
         base_event = base_calendar.walk('vevent')[0]
 
         location = base_event.decoded("location").decode()
