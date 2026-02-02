@@ -36,6 +36,7 @@ class EventsSpider(scrapy.Spider):
             yield scrapy.Request(
                 response.urljoin(e),
                 callback=self.parse_meeting_details,
+                meta={"playwright": True},
             )
 
     def parse_meeting_details(self, response):
