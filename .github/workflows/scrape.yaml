@@ -41,6 +41,10 @@ jobs:
       run: |
         uv run scrapy crawl events
 
+    - name: post-run environment info
+      run: |
+        ls -la
+
     - name: Commit and push if it changed
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
