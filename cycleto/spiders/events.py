@@ -1,6 +1,6 @@
 import scrapy
 
-from typing import Generator, Iterable, Iterator
+from typing import AsyncIterator, Generator, Iterable, Iterator, Any
 
 import scrapy.http
 from scrapy.item import Item
@@ -30,6 +30,15 @@ class EventsSpider(scrapy.Spider):
     start_urls = [
         'https://www.cycleto.ca/events'
     ]
+
+    async def start(self) -> AsyncIterator[Any]:
+        # override default implementation of start() to pass meta{playwright=true}
+        for url in self.start_urls:
+            yield scrapy.Request(
+                url,
+                meta={"playwright": True},
+                dont_filter=True,
+            )
 
     def parse(self, response: scrapy.http.Response) -> Iterator[scrapy.Request]:
         # https://docs.scrapy.org/en/latest/topics/loaders.html#nested-loaders ?
