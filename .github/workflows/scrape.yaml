@@ -29,14 +29,17 @@ jobs:
 
     - name: install chromium
       run: |
-        playwright install chromium
+        uv run playwright install --with-deps chromium firefox
 
-    - name: debug curl
+    - name: environment info
       run: |
-        curl -v https://www.cycleto.ca/events
+        uv run python -c "import scrapy_playwright; print(scrapy_playwright.__version__)"
+        uv run playwright --version
+        uv run playwright install --list
+
     - name: Fetch latest data
       run: |
-        scrapy crawl events
+        uv run scrapy crawl events
 
     - name: Commit and push if it changed
       uses: stefanzweifel/git-auto-commit-action@v5
