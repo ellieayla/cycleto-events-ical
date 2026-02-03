@@ -124,3 +124,7 @@ DOWNLOAD_HANDLERS = {
 }
 
 PLAYWRIGHT_BROWSER_TYPE = "chromium"
+
+PLAYWRIGHT_CONTEXTS = {
+    "default": {}
+}  # type: dict[str, dict]
