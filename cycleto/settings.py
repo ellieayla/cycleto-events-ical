@@ -14,7 +14,7 @@ NEWSPIDER_MODULE = "cycleto.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = None  # "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15 ICal/1.0"
+USER_AGENT = "Mozilla/5.0 (compatible; archive.org_bot +http://archive.org/details/archive.org_bot) Zeno/139ea40 warc/v0.8.96"
 
 # Obey robots.txt rules
 # ROBOTSTXT_OBEY = True
