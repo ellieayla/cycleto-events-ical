@@ -1,4 +1,4 @@
-name: Scrape latest data
+name: Tests
 
 on:
   push:
@@ -7,18 +7,7 @@ jobs:
   scheduled:
     runs-on: ubuntu-latest
 
-    permissions:
-      # Give the default GITHUB_TOKEN write permission to commit and push the
-      # added or changed files to the repository.
-      contents: write
-
     steps:
     - uses: actions/checkout@v4
-
-
-    - name: Install uv
-      uses: astral-sh/setup-uv@v7
-      with:
-        activate-environment: true
-
+    - uses: actions/setup-python@v3
     - uses: pre-commit/action@v3.0.1
