@@ -5,12 +5,10 @@
 
 
 # useful for handling different item types with a single interface
-from typing import reveal_type
 from itemadapter import ItemAdapter
 from .spiders.events import EventsSpider
 
 
-from .items import Event
 
 class CycletoPipeline:
     def process_item(self, item: ItemAdapter, spider: EventsSpider) -> ItemAdapter:

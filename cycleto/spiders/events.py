@@ -1,18 +1,12 @@
-from tracemalloc import start
 import scrapy
 
-from typing import AsyncIterator, Generator, Iterable, Iterator, Any
+from typing import Iterator
 
 import scrapy.http
-from scrapy.item import Item
-from scrapy.loader import ItemLoader
 from scrapy.selector import SelectorList, Selector
 from parsel import Selector as ParselSelector
-from urllib.parse import urljoin
 
 from ..items import Event
-import icalendar
-import logging
 from w3lib.html import remove_tags
 from datetime import datetime, timedelta
 
@@ -21,7 +15,6 @@ def remove_node(nodes_to_remove: list[Selector | ParselSelector] | SelectorList)
         node_to_remove.root.getparent().remove(node_to_remove.root)
 
 def remove_empty_nodes(selector_list: SelectorList) -> None:
-    targets = [_ for _ in selector_list if not remove_tags(_.extract()).strip()]
     remove_node([_ for _ in selector_list if not remove_tags(_.extract()).strip()])
 
 

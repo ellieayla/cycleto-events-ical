@@ -4,7 +4,6 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 
-from datetime import datetime
 from scrapy import Item, Field
 
 

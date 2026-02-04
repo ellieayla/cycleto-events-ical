@@ -1,14 +1,11 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/download-handlers.html#writing-your-own-download-handler
 
-from types import NoneType
-from waybackpy import WaybackMachineSaveAPI, WaybackMachineCDXServerAPI, WaybackMachineAvailabilityAPI
+from waybackpy import WaybackMachineAvailabilityAPI
 
 from scrapy import Request
 from scrapy.http import Response
-from scrapy.utils.httpobj import urlparse_cached
 
-from scrapy.downloadermiddlewares.cookies import CookiesMiddleware
 from logging import getLogger
 
 logger = getLogger(__name__)
