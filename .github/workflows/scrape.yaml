@@ -1,7 +1,6 @@
 name: Scrape latest data
 
 on:
-  push:
   workflow_dispatch:
   schedule:
     - cron: '39 5 * * *'  # 05:39 UTC every day
@@ -27,15 +26,10 @@ jobs:
       run: |
         uv sync
 
-    - name: install chromium
+    - name: archive current events page
       run: |
-        uv run playwright install --with-deps chromium firefox
+        curl http://web.archive.org/save/https://cycleto.ca/events
 
-    - name: environment info
-      run: |
-        uv run python -c "import scrapy_playwright; print(scrapy_playwright.__version__)"
-        uv run playwright --version
-        uv run playwright install --list
 
     - name: Fetch latest data
       run: |

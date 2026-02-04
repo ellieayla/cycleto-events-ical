@@ -6,12 +6,11 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "cryptography>=36.0.1",
-    "datauri==1.0.0",
     "icalendar>=6.1.1",
     "pip>=21.3.1",
     "pytz>=2025.1",
     "scrapy>=2.14.1",
-    "scrapy-playwright==0.0.46",
+    "waybackpy>=3.0.6",
 ]
 
 [tool.mypy]
@@ -32,4 +31,5 @@ follow_untyped_imports = true
 [dependency-groups]
 dev = [
     "mypy>=1.19.1",
+    "types-icalendar>=6.3.2.20251222",
 ]

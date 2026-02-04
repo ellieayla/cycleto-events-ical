@@ -40,7 +40,7 @@ class ICalItemExporter(BaseItemExporter):
         description = Field()
         """
         e = icalendar.Event()
-        
+
         e.add("summary", icalendar.vText(item['summary']))
         e.add('uid', icalendar.vText(str(uuid5(ns, item['url']))))
         e.add('url', icalendar.vText(item['url']))
@@ -48,7 +48,11 @@ class ICalItemExporter(BaseItemExporter):
         e.add("dtstart", icalendar.vDatetime(item['start_datetime']))
         e.add("dtend", icalendar.vDatetime(item['end_datetime']))
 
-        e.add("description", icalendar.vText(item['description']))
+        if item['location']:
+            e.add("location", icalendar.vText(item['location']))
+
+        if item['description']:
+            e.add("description", icalendar.vText(item['description']))
 
         # print(item['start_datetime'], type(item['start_datetime']), dir(item['start_datetime']))
         self.cal.add_component(e)
