@@ -1,4 +1,3 @@
-
 from typing import Any
 from io import BufferedWriter
 
@@ -56,7 +55,6 @@ class ICalItemExporter(BaseItemExporter):
 
         # print(item['start_datetime'], type(item['start_datetime']), dir(item['start_datetime']))
         self.cal.add_component(e)
-
 
     def finish_exporting(self) -> None:
         self.cal.add_missing_timezones()

@@ -10,9 +10,11 @@ from ..items import Event
 from w3lib.html import remove_tags
 from datetime import datetime, timedelta
 
+
 def remove_node(nodes_to_remove: list[Selector | ParselSelector] | SelectorList) -> None:
     for node_to_remove in nodes_to_remove:
         node_to_remove.root.getparent().remove(node_to_remove.root)
+
 
 def remove_empty_nodes(selector_list: SelectorList) -> None:
     remove_node([_ for _ in selector_list if not remove_tags(_.extract()).strip()])
@@ -21,9 +23,7 @@ def remove_empty_nodes(selector_list: SelectorList) -> None:
 class EventsSpider(scrapy.Spider):
     name = 'events'
     allowed_domains = ['www.cycleto.ca', 'web.archive.org']
-    start_urls = [
-        'https://www.cycleto.ca/events'
-    ]
+    start_urls = ['https://www.cycleto.ca/events']
 
     """
     async def start(self) -> AsyncIterator[Any]:
@@ -35,11 +35,11 @@ class EventsSpider(scrapy.Spider):
                 dont_filter=True,
             )
     """
+
     def parse(self, response: scrapy.http.Response) -> Iterator[Event]:
         # https://docs.scrapy.org/en/latest/topics/loaders.html#nested-loaders ?
 
         for e in response.css(".calendar-list li.calendar-day-events-event"):
-
             """
             yield scrapy.Request(
                 response.urljoin(e),
@@ -63,10 +63,8 @@ class EventsSpider(scrapy.Spider):
             yield Event(
                 summary=summary,
                 url=event_url,
-
                 start_datetime=start_time,
                 end_datetime=end_time,
-
                 location=None,
                 description=None,
             )

@@ -11,17 +11,18 @@ from logging import getLogger
 logger = getLogger(__name__)
 
 
-class Wayback():
+class Wayback:
     """
     Convert requests for normal HTTPS webpages to fetch from Wayback Machine's web archive.
     """
+
     def process_request(self, request: Request) -> Request | Response | None:
 
         if request.meta.get('wayback_request') or request.url.startswith("https://web.archive.org/"):
             logger.info(f"Skipping re-entrant request for url {request.url}")
             return None
 
-        #if isinstance(request.headers['User-Agent'], NoneType):
+        # if isinstance(request.headers['User-Agent'], NoneType):
         #    raise ValueError("User-Agent must be specified.")
 
         cdx_api = WaybackMachineAvailabilityAPI(

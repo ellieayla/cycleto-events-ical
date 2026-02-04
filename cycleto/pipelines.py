@@ -9,7 +9,6 @@ from itemadapter import ItemAdapter
 from .spiders.events import EventsSpider
 
 
-
 class CycletoPipeline:
     def process_item(self, item: ItemAdapter, spider: EventsSpider) -> ItemAdapter:
         return item

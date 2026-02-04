@@ -7,7 +7,6 @@
 from scrapy import Item, Field
 
 
-
 """
 BEGIN:VCALENDAR
 VERSION:2.0
@@ -25,6 +24,8 @@ END:VCALENDAR
 
 
 """
+
+
 class Event(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()

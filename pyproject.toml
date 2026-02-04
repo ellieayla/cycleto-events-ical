@@ -24,12 +24,16 @@ disallow_untyped_defs = true
 files = "cycleto/**.py"
 exclude = "test*.py"
 
-[[tool.mypy.overrides]]
-module = ["datauri"]
-follow_untyped_imports = true
-
 [dependency-groups]
 dev = [
     "mypy>=1.19.1",
     "types-icalendar>=6.3.2.20251222",
 ]
+
+
+[tool.ruff]
+line-length = 180
+fix = false
+
+[tool.ruff.format]
+quote-style = "preserve"  # existing quotes are fine
