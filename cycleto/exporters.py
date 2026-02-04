@@ -25,6 +25,8 @@ class ICalItemExporter(BaseItemExporter):
         self.cal.add('prodid', '-//CycleTo.ca//verselogic.net//')
         self.cal.add('version', '2.0')
         self.cal.add('method', 'PUBLISH')
+        self.cal.add('X-WR-CALNAME', 'Cycle Toronto')
+
 
     def export_item(self, item: Event) -> None:
         """
