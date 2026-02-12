@@ -292,7 +292,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "cryptography", specifier = ">=36.0.1" },
-    { name = "icalendar", specifier = ">=6.1.1" },
+    { name = "icalendar", specifier = "==6.3.2" },
     { name = "pip", specifier = ">=21.3.1" },
     { name = "pytz", specifier = ">=2025.1" },
     { name = "scrapy", specifier = ">=2.14.1" },
@@ -302,7 +302,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "mypy", specifier = ">=1.19.1" },
-    { name = "types-icalendar", specifier = ">=6.3.2.20251222" },
+    { name = "types-icalendar", specifier = "==6.3.2.20251222" },
 ]
 
 [[package]]
